@@ -13,6 +13,7 @@ src/
 │   │   ├── layout.tsx
 │   │   ├── page.tsx               # Lista (ISR, revalida cada 24 h)
 │   │   ├── error.tsx
+│   │   ├── not-found.tsx          # 404 de Pokémon
 │   │   └── [name]/page.tsx        # Detalle (SSG con generateStaticParams)
 │   └── rickandmorty/              # Tarea: Rick and Morty
 │       ├── layout.tsx
