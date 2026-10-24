@@ -13,6 +13,9 @@ import {
   statusStyles,
 } from "@/lib/rickandmorty";
 
+// ISR: cada página de personaje se vuelve a generar como máximo cada 10 días (60 * 60 * 24 * 10)
+export const revalidate = 864000;
+
 interface CharacterPageProps {
   params: Promise<{
     id: string;
