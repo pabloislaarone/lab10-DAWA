@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-rick: var(--font-bangers);
+}
+
+/* ---------- Animaciones (Rick and Morty) ---------- */
+@theme {
+  --color-portal: #97ce4c;
+  --color-portal-light: #c6f36b;
+  --color-portal-dark: #1f5f3a;
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-fade-in: fade-in 0.8s ease-out both;
+  --animate-portal-spin: portal-spin 18s linear infinite;
+  --animate-portal-spin-fast: portal-spin 4s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 2.8s ease-in-out infinite;
+  --animate-stars: stars 120s linear infinite;
+  --animate-wobble: wobble 0.6s ease-in-out;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(28px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes portal-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      text-shadow: 0 0 12px rgb(151 206 76 / 0.5), 0 0 32px rgb(151 206 76 / 0.25);
+    }
+    50% {
+      text-shadow: 0 0 22px rgb(151 206 76 / 0.9), 0 0 60px rgb(151 206 76 / 0.45);
+    }
+  }
+
+  @keyframes stars {
+    from {
+      background-position: 0 0, 0 0, 0 0;
+    }
+    to {
+      background-position: 0 -2000px, 0 -1200px, 0 -800px;
+    }
+  }
+
+  @keyframes wobble {
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+    25% {
+      transform: rotate(-8deg);
+    }
+    75% {
+      transform: rotate(8deg);
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Cielo estrellado del multiverso */
+.starfield {
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, white, transparent),
+    radial-gradient(1.5px 1.5px at 140px 80px, rgb(198 243 107 / 0.9), transparent),
+    radial-gradient(1px 1px at 90px 160px, rgb(255 255 255 / 0.7), transparent);
+  background-size: 220px 220px, 340px 340px, 180px 180px;
+}
+
+/* Las cards aparecen al hacer scroll (si el navegador lo soporta) */
+.card-reveal {
+  animation: var(--animate-fade-up);
+}
+
+@supports (animation-timeline: view()) {
+  .card-reveal {
+    animation: fade-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 22%;
+  }
+}
+
+/* Respeta a quienes prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
